@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>WhiteBoard</title>
+	<link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="js/tooltipster-master/css/tooltipster.css" />
+    <link rel="stylesheet" media="screen" type="text/css" href="assets/colorpicker/css/colorpicker.css" />
+	<!--<script type="text/javascript" src="js/jquery.js"></script>-->
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+    <script type="text/javascript" src="js/tooltipster-master/js/jquery.tooltipster.min.js"></script>
+    <script type="text/javascript" src="assets/colorpicker/js/colorpicker.js"></script>
+    <script>
+        var strokeColor = "#000000",
+            fillColor = "#ffffff";
+    </script>
+	<script type="text/javascript" src="js/paper-full.js"></script>
+    <script type="text/javascript" src="js/Undo.js"></script>
+	<script type="text/javascript" src="js/toolSelect.js"></script>
+	<script type="text/javascript" src="js/toolDirectSelect.js"></script>
+	<script type="text/javascript" src="js/toolScale.js"></script>
+	<script type="text/javascript" src="js/toolRotate.js"></script>
+	<script type="text/javascript" src="js/toolZoomPan.js"></script>
+	<script type="text/javascript" src="js/toolPencil.js"></script>
+	<script type="text/javascript" src="js/toolPen.js"></script>
+	<script type="text/javascript" src="js/toolLine.js"></script>
+	<script type="text/javascript" src="js/toolCircle.js"></script>
+	<script type="text/javascript" src="js/toolRectangle.js"></script>
+	<script type="text/javascript" src="js/toolRoundRectangle.js"></script>
+	<script type="text/javascript" src="js/toolRegularPolygon.js"></script>
+	<script type="text/javascript" src="js/toolStack.js"></script>
+	<script type="text/javascript" src="js/editor.js"></script>
+</head>
+<body>
+    <input type="hidden" name="strokeColor" id="strokeColor" value="#000000">
+    <input type="hidden" name="fillColor" id="fillColor" value="#ffffff">
+	<div id="menu">
+		<a id="undo" class="tooltip" title="Undo"><img src="img/sc_undo.png"></a>
+		<a id="redo" class="tooltip" title="Redo"><img src="img/sc_redo.png"></a>
+		-
+		<a id="cut" class="tooltip" title="Cut"><img src="img/sc_cut.png"></a>
+		<a id="copy" class="tooltip" title="Copy"><img src="img/sc_copy.png"></a>
+		<a id="paste" class="tooltip" title="Paste"><img src="img/sc_paste.png"></a>
+		-
+		<a id="delete" class="tooltip" title="Delete"><img src="img/sc_delete.png"></a>
+	</div>
+	<ul id="tools">
+		<li id="tool-select" class="button tooltip" title="Select Tool"><img src="img/icon-arrow-black.png" /></li>
+		<li id="tool-direct-select" class="button tooltip" title="Direct Select Tool"><img src="img/icon-arrow-white.png" /></li>
+		<li id="tool-pencil" class="button tooltip" title="Pencil"><img src="img/icon-pencil.png" /></li>
+		<li id="tool-pen" class="button tooltip" title="Pen"><img src="img/icon-pen.png" /></li>
+		<li id="tool-zoompan" class="button tooltip" title="Zoompan"><img src="img/icon-hand.png" /></li>
+		<li id="tool-line" class="button tooltip" title="Line"><img src="img/icon-line.png" /></li>
+		<li id="tool-circle" class="button tooltip" title="Circle"><img src="img/icon-circle.png" /></li>
+		<li id="tool-rectangle" class="button tooltip" title="Rectangle"><img src="img/icon-rectangle.png" /></li>
+		<li id="tool-regular-polygon" class="button tooltip" title="Regular Polygon"><img src="img/icon-polygon.png" /></li>
+	</ul>
+	<canvas id="canvas1" style="border: 1px solid #000000 !important;" width="1000" height="500" ></canvas>
+	<canvas id="canvas2" style="border: 1px solid #000000 !important;" width="1000" height="500" ></canvas>
+    <div id="canvas1-txt" class="canvax-txt">Canvas 1</div>
+    <div id="canvas2-txt" class="canvax-txt">Canvas 2</div>
+    <div class="shapes-tool">
+        <div>
+            Select Canvas:
+            <select id="select-canvas">
+                <option value="canvas1" selected>Canvas 1</option>
+                <option value="canvas2">Canvas 2</option>
+            </select>
+        </div>
+        <div class="shapes-config">
+            <ul class="params-rectangle">
+                <li><strong>Round Rectangle</strong></li>
+                <li>Active: <input type="checkbox" id="rectangle-active" class="tooltip" title="check it to activate rounded rectangle" /></li>
+                <li>Width: <input type="text" id="rectangle-width" class="tooltip" title="width of corners for rounded rectangle" type="number" min="0" onkeypress="return isNumber(event)" value="0"></li>
+                <li>Height: <input type="text" id="rectangle-height" class="tooltip" title="height of corners for rounded rectangle" type="number" min="0" onkeypress="return isNumber(event)" value="0"></li>
+            </ul>
+            <ul class="params-regular-polygon">
+                <li><strong>Regular Polygon</strong></li>
+                <li>No of Sides: <input type="text" id="noOfSides" class="tooltip" title="number of sides of polygon, i.e., 3 for triangle, 4 for square & rectangle, 5 for pentagon, 6 for hexagon, 7 for Octagon, etc., see http://en.wikipedia.org/wiki/Polygon" type="number" min="0" onkeypress="return isNumber(event)" value="3"></li>
+            </ul>
+        </div>
+        <div class="color-box">
+            <strong>Choose Colors</strong><br><br>
+            Stoke Color<div id="strokeColorSelector"><div style="background-color: #000000"></div></div>
+            Fill Color<div id="fillColorSelector"><div style="background-color: #ffffff"></div></div>
+        </div>
+    </div>
+    <span id="prepare-canvas-overlay"><i class="fa fa-spinner fa-spin fa-5x"></i>Preparing</span>
+</body>
+</html>
